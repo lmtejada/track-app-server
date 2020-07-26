@@ -1,0 +1,7 @@
+node_modules/**/*
+.expo/*
+.vscode/*
+npm-debug.*
+
+# macOS
+.DS_Store
