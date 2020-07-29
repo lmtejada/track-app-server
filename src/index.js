@@ -1,7 +1,16 @@
+require('./models/Users');
+
 const express = require('express');
+const bodyParser = require('body-parser');
 const moongose = require('mongoose');
 
+const requireAuth = require('./middlewares/requireAuth');
+const authRoutes = require('./routes/authRoutes');
+
 const app = express();
+
+app.use(bodyParser.json());
+app.use(authRoutes);
 
 const mongoUri = 'mongodb+srv://laura-admin:TMcpl2vO0JNzfTuN@cluster0.95txu.mongodb.net/<dbname>?retryWrites=true&w=majority';
 
@@ -18,8 +27,8 @@ moongose.connection.on('error', (err) => {
   console.error('Error connecting to mongo', err);
 });
 
-app.get('/', (req, res) => {
-  res.send('Hi There!');
+app.get('/', requireAuth, (req, res) => {
+  res.send(`Your email: ${req.user.email}`);
 });
 
 app.listen(3000, () => {
