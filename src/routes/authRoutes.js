@@ -1,9 +1,9 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
-
 const router = express.Router();
+
+const User = mongoose.model('User');
 
 router.post('/signup', async (req, res) => {
   const { email, password } = req.body;

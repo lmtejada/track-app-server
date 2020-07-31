@@ -1,4 +1,5 @@
 require('./models/Users');
+require('./models/Track');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -6,11 +7,13 @@ const moongose = require('mongoose');
 
 const requireAuth = require('./middlewares/requireAuth');
 const authRoutes = require('./routes/authRoutes');
+const trackRoutes = require('./routes/trackRoutes');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(trackRoutes);
 
 const mongoUri = 'mongodb+srv://laura-admin:TMcpl2vO0JNzfTuN@cluster0.95txu.mongodb.net/<dbname>?retryWrites=true&w=majority';
 
